@@ -23,6 +23,7 @@ public class DatabaseLoader implements ApplicationRunner {
     @Autowired
     private final PostRepository postRepository;
 
+    @Autowired
     public DatabaseLoader(PostRepository postRepository) {
 
         this.postRepository = postRepository;
@@ -37,7 +38,8 @@ public class DatabaseLoader implements ApplicationRunner {
             String title = String.format(template, gadget);
             Post post = new Post(title, "Lorem ipsum dolor sit amet, consectetur adipiscing elit… ");
             randomPosts.add(post);
-            postRepository.saveAll(randomPosts);
+
         });
+        postRepository.saveAll(randomPosts);
     }
 }
