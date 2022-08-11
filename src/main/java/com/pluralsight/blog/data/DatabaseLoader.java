@@ -21,12 +21,12 @@ public class DatabaseLoader implements ApplicationRunner {
     public List<Post> randomPosts = new ArrayList<>();
     public List<Author> authors = new ArrayList<>();
 
-    private final AuthorRepository authorRepository;
 
     private final PostRepository postRepository;
+    private final AuthorRepository authorRepository;
 
     @Autowired
-    public DatabaseLoader(AuthorRepository authorRepository, PostRepository postRepository) {
+    public DatabaseLoader(PostRepository postRepository,AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
         this.postRepository = postRepository;
     }
@@ -43,7 +43,7 @@ public class DatabaseLoader implements ApplicationRunner {
         IntStream.range(0,40).forEach(i->{
             String template = templates[i % templates.length];
             String gadget = gadgets[i % gadgets.length];
-    Author author = authors.get(i % authors.size());
+            Author author = authors.get(i % authors.size());
             String title = String.format(template, gadget);
             Post post = new Post(title, "Lorem ipsum dolor sit amet, consectetur adipiscing elit… ");
             post.setAuthor(author);
