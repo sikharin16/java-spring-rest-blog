@@ -21,6 +21,11 @@ public class Author {
     private String username;
     private String password;
 
+    @OneToMany
+    List<Post> posts;
+
+
+
     public Author() {
         super();
     }
@@ -85,10 +90,11 @@ public class Author {
     }
 
     public List<Post> getPosts() {
-        return null;
+        return posts;
     }
 
     public void addPost(Post post) {
+        posts.add(post);
         return;
     }
 }
